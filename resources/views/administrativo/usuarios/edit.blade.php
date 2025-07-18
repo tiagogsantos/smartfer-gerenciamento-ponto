@@ -13,7 +13,7 @@
                                         class="icon-base bx bx-user icon-sm me-1_5"></i> Conta</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="pages-account-settings-security.html"><i
+                                <a class="nav-link" href="#"><i
                                         class="icon-base bx bx-lock-alt icon-sm me-1_5"></i> Segurança</a>
                             </li>
                         </ul>

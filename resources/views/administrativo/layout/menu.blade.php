@@ -67,22 +67,22 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="app-invoice-list.html" class="menu-link">
+                    <a href="{{ route('admin.getListAtestados') }}" class="menu-link">
                         <div data-i18n="List">Lista</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="app-invoice-preview.html" class="menu-link">
+                    <a href="#" class="menu-link">
                         <div data-i18n="Preview">Visualizar</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="app-invoice-edit.html" class="menu-link">
+                    <a href="#" class="menu-link">
                         <div data-i18n="Edit">Editar</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="app-invoice-add.html" class="menu-link">
+                    <a href="#" class="menu-link">
                         <div data-i18n="Add">Adicionar</div>
                     </a>
                 </li>
@@ -106,12 +106,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="app-user-view-account.html" class="menu-link">
+                            <a href="{{ route('admin.getListAtestados') }}" class="menu-link">
                                 <div data-i18n="Account">Atestados</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="app-user-view-security.html" class="menu-link">
+                            <a href="#" class="menu-link">
                                 <div data-i18n="Security">Batimento Ponto</div>
                             </a>
                         </li>
@@ -121,6 +121,7 @@
         </li>
     </ul>
 </aside>
+
 <div class="menu-mobile-toggler d-xl-none rounded-1">
     <a href="javascript:void(0);"
        class="layout-menu-toggle menu-link text-large text-bg-secondary p-2 rounded-1">

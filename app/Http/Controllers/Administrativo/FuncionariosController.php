@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class FuncionariosController extends Controller
 {
+    // Retorna página de edição
     public function editFuncionario($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $user = User::where('id', $id)->first();
@@ -22,6 +23,7 @@ class FuncionariosController extends Controller
         ]);
     }
 
+    // Atualização de funcionario
     public function atualizarFuncionario(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         try {
@@ -69,6 +71,7 @@ class FuncionariosController extends Controller
         }
     }
 
+    // Inativação de funcionário
     public function excluirFuncionario($id)
     {
         $retorno = ['error' => ''];
