@@ -9,7 +9,7 @@ class Perfil extends Model
 {
     use HasFactory;
 
-    protected $table = 'profile_user';
+    protected $table = 'perfil';
     protected $primaryKey = 'id';
 
     protected $fillable = [

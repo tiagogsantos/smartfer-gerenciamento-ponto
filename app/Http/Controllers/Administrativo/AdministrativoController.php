@@ -15,7 +15,7 @@ class AdministrativoController extends Controller
         $funcionariosAtivos = User::where('tipo', 'funcionario')->where('status', 1)->count();
         $atestadoPendente = Atestados::where('status', '=', 'pendente')->count();
 
-        return view('administrativo.layout.header', [
+        return view('administrativo.usuarios.list', [
             'funcionarios' => $funcionarios,
             'funcionariosInativos' => $funcionariosInativos,
             'funcionariosAtivos' => $funcionariosAtivos,

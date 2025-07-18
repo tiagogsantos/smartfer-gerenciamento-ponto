@@ -18,7 +18,7 @@
             let linkExclusao = "{{ url('/administrativo/excluir-funcionario') }}/" + item.id;
 
             let excluir = `<div class="btn-group">
-                                <a href="${linkExclusao}" class="btn btn-icon delete-record">
+                                <a href="#" class="btn btn-icon delete-record" onclick="excluirFuncionario(${item.id})">
                                 <i class="icon-base bx bx-trash icon-md"></i>
                            </div>`;
 
@@ -54,5 +54,82 @@
             processing: true
         });
     });
+
+    // Atualizar dados de funcionários
+    $("#atualizarFuncionario").click(function (e) {
+        e.preventDefault();
+
+        let idUser = $("#idFuncionario").val();
+        let formulario = $("#editarFuncionario");
+        let formData = new FormData(formulario[0]);
+
+        $.ajax({
+            url: "{{ url('administrativo/atualizar-funcionario') }}" + '/' + idUser,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (response) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: response.message,
+                    icon: 'success'
+                });
+
+                setTimeout(function () {
+                    window.location.reload();
+                }, 300);
+            },
+            error: function (response) {
+                Swal.fire({
+                    title: 'Erro!',
+                    text: response.responseJSON?.error || 'Erro ao atualizar funcionário.',
+                    icon: 'error'
+                });
+            }
+        });
+    });
+
+    // Excluir Funcionario
+    function excluirFuncionario(id) {
+        Swal.fire({
+            title: "Atenção!",
+            text: "Deseja realmente excluir o funcionário?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sim, eu quero!",
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                let url = 'administrativo/excluir-funcionario' + '/' + id;
+
+                $.post(url).done(response => {
+                    if (response.error === '') {
+                        Swal.fire({
+                            title: "Atenção!",
+                            text: "Não foi possível excluir o funcionário!",
+                            icon: "danger"
+                        });
+                        return false;
+                    }
+
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: response.message,
+                        icon: "success"
+                    });
+
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 300);
+                });
+            }
+        });
+    }
+
 
 </script>
