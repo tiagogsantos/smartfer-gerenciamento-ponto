@@ -89,9 +89,5 @@ class FuncionariosController extends Controller
             $retorno['mensagem'] = 'Não foi possível excluir o funcionário!';
             return response()->json($retorno);
         }
-
-
     }
-
-
 }

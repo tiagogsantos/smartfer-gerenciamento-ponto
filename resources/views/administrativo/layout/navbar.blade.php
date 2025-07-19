@@ -1,4 +1,5 @@
-<!-- Navbar -->
+@php use Illuminate\Support\Facades\Auth; @endphp
+    <!-- Navbar -->
 <nav
     class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
     id="layout-navbar">
@@ -52,22 +53,27 @@
                 <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);"
                    data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{ asset('img/avatar/1.png') }}" alt class="rounded-circle"/>
+                        <img src="{{ asset($perfil->foto_capa ? 'storage/'. $perfil->foto_capa : 'img/avatar/1.png') }}"
+                             alt="Foto do perfil"
+                             class="rounded-circle"
+                             id="uploadedAvatar"/>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                        <a class="dropdown-item" href="{{ route('admin.editarfuncionario', ['id' => Auth::user()->id]) }}">
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ asset('img/avatar/1.png') }}" alt
-                                             class="w-px-40 h-auto rounded-circle"/>
+                                        <img src="{{ asset($perfil->foto_capa ? 'storage/'. $perfil->foto_capa : 'img/avatar/1.png') }}"
+                                             alt="Foto do perfil"
+                                             class="rounded-circle"
+                                             id="uploadedAvatar"/>
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <h6 class="mb-0">John Doe</h6>
-                                    <small class="text-body-secondary">Admin</small>
+                                    <h6 class="mb-0">{{ Auth::user()->name }}</h6>
+                                    <small class="text-body-secondary">{{ Auth::user()->tipo }}</small>
                                 </div>
                             </div>
                         </a>
@@ -76,18 +82,19 @@
                         <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="pages-profile-user.html"> <i
+                        <a class="dropdown-item"
+                           href="{{ route('admin.editarfuncionario', ['id' => Auth::user()->id]) }}"> <i
                                 class="icon-base bx bx-user icon-md me-3"></i><span>Meu Perfil</span> </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="pages-account-settings-account.html"> <i
+                        <a class="dropdown-item" href="#"> <i
                                 class="icon-base bx bx-cog icon-md me-3"></i><span>Configurações</span> </a>
                     </li>
                     <li>
                         <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="auth-login-cover.html" target="_blank"> <i
+                        <a class="dropdown-item" href="{{ route('web.logout') }}" target="_blank"> <i
                                 class="icon-base bx bx-power-off icon-md me-3"></i><span>Sair</span> </a>
                     </li>
                 </ul>

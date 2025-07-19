@@ -71,54 +71,53 @@
                         <div data-i18n="List">Lista</div>
                     </a>
                 </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->tipo === 'rh')
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Edit">Editar</div>
+                        </a>
+                    </li>
+                @else
+                @endif
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Preview">Visualizar</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Edit">Editar</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
+                    <a href="{{ route('admin.createaestados') }}" class="menu-link">
                         <div data-i18n="Add">Adicionar</div>
                     </a>
                 </li>
             </ul>
         </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon icon-base bx bx-user"></i>
-                <div data-i18n="Users">Funcionários</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.index') }}" class="menu-link">
-                        <div data-i18n="List">Lista</div>
-                    </a>
-                </li>
 
-                <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <div data-i18n="View">Visualizar</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="{{ route('admin.getListAtestados') }}" class="menu-link">
-                                <div data-i18n="Account">Atestados</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Security">Batimento Ponto</div>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
+        @if(\Illuminate\Support\Facades\Auth::user()->tipo === 'rh')
+            <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon icon-base bx bx-user"></i>
+                    <div data-i18n="Users">Funcionários</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('admin.index') }}" class="menu-link">
+                            <div data-i18n="List">Lista</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="{{ route('admin.getListAtestados') }}" class="menu-link">
+                                    <div data-i18n="Account">Atestados</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Security">Batimento Ponto</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        @else
+        @endif
     </ul>
 </aside>
 

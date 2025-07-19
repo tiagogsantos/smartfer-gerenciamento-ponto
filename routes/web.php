@@ -3,27 +3,39 @@
 use App\Http\Controllers\Administrativo\AdministrativoController;
 use App\Http\Controllers\Administrativo\AtestadoController;
 use App\Http\Controllers\Administrativo\FuncionariosController;
+use App\Http\Controllers\Web\AuthController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+
+Route::group(['as' => 'web.'], function () {
+
+    Route::post('login', [AuthController::class, 'login'])->name('login.do');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+});
 
 Route::prefix('/administrativo')->name('admin.')->namespace('Administrativo')->group(function () {
 
-    Route::get('criar-atestados', [AtestadoController::class, 'createAtestado'])->name('createaestados');
+    Route::middleware(['auth:sanctum'])->group(function () {
 
-    Route::get('lista-atestados/{id}/{user_id}', [AtestadoController::class, 'editAtestado'])->name('editaestados');
+        Route::post('store-atestados', [AtestadoController::class, 'storeAtestado'])->name('storeaestados');
 
-    Route::get('lista-atestados', [AtestadoController::class, 'getListAtestados'])->name('getListAtestados');
+        Route::get('criar-atestados', [AtestadoController::class, 'createAtestado'])->name('createaestados');
 
-    Route::post('atualizar-funcionario/{id}', [FuncionariosController::class, 'atualizarFuncionario'])->name('atualizarfuncionario');
+        Route::get('lista-atestados/{id}/{user_id}', [AtestadoController::class, 'editAtestado'])->name('editaestados');
 
-    Route::post('excluir-funcionario/{id}', [FuncionariosController::class, 'excluirFuncionario'])->name('excluirfuncionario');
+        Route::get('lista-atestados', [AtestadoController::class, 'getListAtestados'])->name('getListAtestados');
 
-    Route::get('editar-funcionario/{id}', [FuncionariosController::class, 'editFuncionario'])->name('editarfuncionario');
+        Route::post('atualizar-funcionario/{id}', [FuncionariosController::class, 'atualizarFuncionario'])->name('atualizarfuncionario');
 
-    Route::get('lista-usuarios', [AdministrativoController::class, 'getListUsers'])->name('getListUsers');
+        Route::post('excluir-funcionario/{id}', [FuncionariosController::class, 'excluirFuncionario'])->name('excluirfuncionario');
 
-    Route::get('/', [AdministrativoController::class, 'index'])->name('index');
+        Route::get('editar-funcionario/{id}', [FuncionariosController::class, 'editFuncionario'])->name('editarfuncionario');
 
+        Route::get('lista-usuarios', [AdministrativoController::class, 'getListUsers'])->name('getListUsers');
+
+        Route::get('/', [AdministrativoController::class, 'index'])->name('index');
+    });
 });
 
 

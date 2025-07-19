@@ -12,7 +12,8 @@
                             <p class="mb-0">Total {{ $qtdAtestados }} course you have purchased</p>
                         </div>
 
-                        <a href="{{ route('admin.createaestados') }}" class="btn btn-primary text-white">Criar atestado</a>
+                        <a href="{{ route('admin.createaestados') }}" class="btn btn-primary text-white">Criar
+                            atestado</a>
                     </div>
                     <div class="card-body">
 
@@ -21,10 +22,11 @@
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="card p-2 h-100 shadow-none border">
                                         <div class="rounded-2 text-center mb-4">
-                                            <a href="app-academy-course-details.html">
+                                            <a href="{{ route('admin.editaestados', ['id' => $atestado->id,
+                                                        'user_id' => $atestado->user_id]) }}">
                                                 <img class="img-fluid"
-                                                     src="../../assets/img/pages/app-academy-tutor-1.png"
-                                                     alt="tutor image 1"/></a>
+                                                     src="{{ $atestado->arquivo ? asset('storage/' . $atestado->arquivo) : url('https://placehold.co/600x400/png') }}"
+                                                     alt="Foto Atestado" /></a>
                                         </div>
                                         <div class="card-body p-4 pt-2">
                                             <div class="d-flex justify-content-between align-items-center mb-4">
