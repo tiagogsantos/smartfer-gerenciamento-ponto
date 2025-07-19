@@ -11,6 +11,21 @@ use Illuminate\Support\Facades\Storage;
 
 class AtestadoController extends Controller
 {
+
+    public function UpdateAtestado(Request $request, $id)
+    {
+        $atestado = Atestados::where('id', $id)->first();
+
+        if ($atestado) {
+            Atestados::where('id', $id)->update([
+               'status' =>  $request->input('status')
+            ]);
+        } else {
+            dd('Não existe');
+        }
+
+    }
+
     public function storeAtestado(Request $request)
     {
         $id = Auth::id();
@@ -72,6 +87,7 @@ class AtestadoController extends Controller
     public function getListAtestados()
     {
         $user = Auth::user();
+
 
         $perfil = Perfil::where('user_id', Auth::user()->id)->first();
 

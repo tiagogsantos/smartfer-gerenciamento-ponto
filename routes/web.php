@@ -18,6 +18,8 @@ Route::prefix('/administrativo')->name('admin.')->namespace('Administrativo')->g
 
     Route::middleware(['auth:sanctum'])->group(function () {
 
+        Route::post('update-atestados/{id}', [AtestadoController::class, 'UpdateAtestado'])->name('updateaestados');
+
         Route::post('store-atestados', [AtestadoController::class, 'storeAtestado'])->name('storeaestados');
 
         Route::get('criar-atestados', [AtestadoController::class, 'createAtestado'])->name('createaestados');

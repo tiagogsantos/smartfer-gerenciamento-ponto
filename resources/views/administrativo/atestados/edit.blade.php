@@ -27,6 +27,31 @@
                                 </div>
                             </div>
                             <hr/>
+
+                            <form
+                                action="{{ route('admin.updateaestados', ['id' => $atestados->id]) }}" method="POST">
+                                @csrf
+                                <select id="" class="select2 form-select" name="status">
+                                    <option value="">Selecione</option>
+                                    <option
+                                        value="pendente" {{ old('status') === 'pendente' ? 'selected' : ($atestados->status === 'pendente' ? 'selected' : '') }}>
+                                        Pendente
+                                    </option>
+
+                                    <option
+                                        value="rejeitado" {{ old('status') === 'rejeitado' ? 'selected' : ($atestados->status === 'rejeitado' ? 'selected' : '') }}>
+                                        Rejeitado
+                                    </option>
+
+                                    <option
+                                        value="aprovado" {{ old('status') === 'aprovado' ? 'selected' : ($atestados->status === 'aprovado' ? 'selected' : '') }}>
+                                        Aprovado
+                                    </option>
+                                </select>
+
+                                <button type="submit" class="btn btn-success">Atualizar atestado</button>
+                            </form>
+
                             <h5>Descrições</h5>
                             <p>{{ $atestados->descricao }}</p>
                             <hr>
